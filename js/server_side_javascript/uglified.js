@@ -1,0 +1,1 @@
+function hello(l){console.log("HI,"+l)}hello("ringgu");
