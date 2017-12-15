@@ -1,11 +1,12 @@
 var express = require('express');
 var app = express();
+app.locals.pretty = true;//템플릿 엔진에서 사용한 html 코드들을 들여쓰기 및 정렬
 /* 템플릿 엔진 사용법*/
 //nodejs 수정할 때마다 안켜도 하는 법 supervisor 입력 좀 더 익숙해지면 사용할거임!
 app.set('view engine' , 'jade');
 app.set('views','./views');
 app.get('/template', function(req, res){
-  res.render('temp');
+  res.render('temp', {time:Date(), title:'Jade'});
 });
 app.use(express.static('public'));
 //http://localhost:3000/
