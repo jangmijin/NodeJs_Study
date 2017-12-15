@@ -8,6 +8,28 @@ app.get('/',function(req, res){
 app.get('/route', function(req ,res){
   res.send('hello router,<img src ="/search.gif"/>')
 })
+app.get('/dynamic', function(req, res){
+  var lis ='';
+  for(var i=0; i<5; i ++){
+    lis = lis + '<li>cording</li>'
+  }
+  var time = Date();
+  var output = `<!DOCTYPE>
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <title></title>
+    </head>
+    <body>
+      hello, Dnaymic!
+      <ul>
+        ${lis}
+      </ul>
+      ${time}
+    </body>
+  </html>`;
+  res.send(output);
+})
 //get 메소드를 라우터라고 부르고 get이하는 일을 라우팅이라고 부른다
 app.get('/login', function(req, res){
   res.send('<h1>Login please</h1>');
