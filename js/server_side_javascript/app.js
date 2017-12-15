@@ -9,6 +9,14 @@ app.get('/template', function(req, res){
   res.render('temp', {time:Date(), title:'Jade'});
 });
 app.use(express.static('public'));
+app.get('/form', function(req, res){
+  res.render('form');//render 템플릿 파일 할때
+});
+app.get('/form_receiver', function(req,res){
+    var title = req.query.title;
+    var description = req.query.description;
+    res.send(title+','+description);
+})
 //시맨틱 url로 변경할때 :경로명, query 대신 params 를 적어준다!
 app.get('/topic/:id' ,function(req, res){
   var topics = [
