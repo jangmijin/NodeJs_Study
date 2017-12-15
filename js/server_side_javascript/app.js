@@ -9,10 +9,20 @@ app.get('/template', function(req, res){
   res.render('temp', {time:Date(), title:'Jade'});
 });
 app.use(express.static('public'));
-//query 객체의 사용법
+//query 객체의 이용
 app.get('/topic' ,function(req, res){
-  //각각의 값을 주고 싶을때
-  res.send(req.query.id+','+req.query.name);
+  var topics = [
+    'Javascript is.....',
+    'Nodejs is......',
+    'Express is......'
+  ];
+  var output = `
+    <a href="/topic?id=0">JavaScript</a></br>
+    <a href="/topic?id=1">Nodejs</a></br>
+    <a href="/topic?id=2">Express</a></br></br>
+    ${topics[req.query.id]}
+  `
+  res.send(output);
 })
 //http://localhost:3000/
 app.get('/',function(req, res){
