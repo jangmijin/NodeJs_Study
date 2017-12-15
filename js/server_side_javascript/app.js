@@ -1,5 +1,12 @@
 var express = require('express');
 var app = express();
+/* 템플릿 엔진 사용법*/
+//nodejs 수정할 때마다 안켜도 하는 법 supervisor 입력 좀 더 익숙해지면 사용할거임!
+app.set('view engine' , 'jade');
+app.set('views','./views');
+app.get('/template', function(req, res){
+  res.render('temp');
+});
 app.use(express.static('public'));
 //http://localhost:3000/
 app.get('/',function(req, res){
