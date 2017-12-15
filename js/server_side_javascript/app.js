@@ -9,8 +9,8 @@ app.get('/template', function(req, res){
   res.render('temp', {time:Date(), title:'Jade'});
 });
 app.use(express.static('public'));
-//query 객체의 이용
-app.get('/topic' ,function(req, res){
+//시맨틱 url로 변경할때 :경로명, query 대신 params 를 적어준다!
+app.get('/topic/:id' ,function(req, res){
   var topics = [
     'Javascript is.....',
     'Nodejs is......',
@@ -20,10 +20,13 @@ app.get('/topic' ,function(req, res){
     <a href="/topic?id=0">JavaScript</a></br>
     <a href="/topic?id=1">Nodejs</a></br>
     <a href="/topic?id=2">Express</a></br></br>
-    ${topics[req.query.id]}
+    ${topics[req.params.id]}
   `
   res.send(output);
-})
+});
+app.get('/topic/:id/:mode' , function(req, res){
+  res.send(req.params.id+","+req.params.mode)
+});
 //http://localhost:3000/
 app.get('/',function(req, res){
   res.send('hello home page');
