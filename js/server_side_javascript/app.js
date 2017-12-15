@@ -1,9 +1,13 @@
 var express = require('express');
 var app = express();
+app.use(express.static('public'));
 //http://localhost:3000/
 app.get('/',function(req, res){
   res.send('hello home page');
 });
+app.get('/route', function(req ,res){
+  res.send('hello router,<img src ="/search.gif"/>')
+})
 //get 메소드를 라우터라고 부르고 get이하는 일을 라우팅이라고 부른다
 app.get('/login', function(req, res){
   res.send('<h1>Login please</h1>');
