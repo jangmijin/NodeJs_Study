@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 app.locals.pretty = true;//템플릿 엔진에서 사용한 html 코드들을 들여쓰기 및 정렬
 /* 템플릿 엔진 사용법*/
@@ -9,6 +10,7 @@ app.get('/template', function(req, res){
   res.render('temp', {time:Date(), title:'Jade'});
 });
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false}));
 app.get('/form', function(req, res){
   res.render('form');//render 템플릿 파일 할때
 });
@@ -16,7 +18,12 @@ app.get('/form_receiver', function(req,res){
     var title = req.query.title;
     var description = req.query.description;
     res.send(title+','+description);
-})
+});
+app.post('/form_receiver', function(req, res){
+  var title = req.body.title;
+  var description = req.body.description
+  res.send(title+','+description);
+});
 //시맨틱 url로 변경할때 :경로명, query 대신 params 를 적어준다!
 app.get('/topic/:id' ,function(req, res){
   var topics = [
