@@ -9,6 +9,11 @@ app.get('/template', function(req, res){
   res.render('temp', {time:Date(), title:'Jade'});
 });
 app.use(express.static('public'));
+//query 객체의 사용법
+app.get('/topic' ,function(req, res){
+  //각각의 값을 주고 싶을때
+  res.send(req.query.id+','+req.query.name);
+})
 //http://localhost:3000/
 app.get('/',function(req, res){
   res.send('hello home page');
