@@ -25,7 +25,7 @@ app.post('/form_receiver', function(req, res){
   res.send(title+','+description);
 });
 //시맨틱 url로 변경할때 :경로명, query 대신 params 를 적어준다!
-app.get('/topic/:id' ,function(req, res){
+app.get('/topic' ,function(req, res){
   var topics = [
     'Javascript is.....',
     'Nodejs is......',
@@ -35,7 +35,7 @@ app.get('/topic/:id' ,function(req, res){
     <a href="/topic?id=0">JavaScript</a></br>
     <a href="/topic?id=1">Nodejs</a></br>
     <a href="/topic?id=2">Express</a></br></br>
-    ${topics[req.params.id]}
+    ${topics[req.query.id]}
   `
   res.send(output);
 });
